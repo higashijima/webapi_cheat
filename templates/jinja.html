@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head></head>
+
+<body>
+  <p>{{ s }}</p>
+  <hr>
+  <ul>
+    {% for x in l %}
+    <li>{{ x }}</li>
+    {% endfor %}
+  </ul>
+  <hr>
+
+  <p>{{ "name: %s age %s" % (d["name"], d["age"]) }}</p>
+
+  {% if b %}
+  <p>True</p>
+  {% else %}
+  <p>False</p>
+  {% endif %}
+</body>
+
+</html>
