@@ -26,6 +26,24 @@ def jinja():
 
     return render_template('jinja.html', s=s, l=l, d=d, b=b)
 
+# テキスト編集画面
+@app.route('/editpage')
+def edit():
+    with open('test.data', 'rb') as datafile:
+        data = pickle.load(datafile)
+    return render_template('edit.html', filetext=data[0]["text"])
+
+# テキスト登録
+@app.route('/regist', methods=['POST'])
+def regist():
+    t = request.form['edittext']
+    print(t)
+    obj = [{"text":t}]
+    with open('test.data', 'wb') as datafile:
+        pickle.dump(obj, datafile)
+        datafile.close()
+    return redirect(url_for('edit'))
+
 
 if __name__ == '__main__':
     app.debug = True
