@@ -1,4 +1,11 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
+import pickle
+import os
+from logging import getLogger, INFO, DEBUG
+logger = getLogger(__name__)
+logger.setLevel(INFO)
+if os.environ.get('DEBUG', None):
+    logger.setLevel(DEBUG)
 
 app = Flask(__name__)
 
