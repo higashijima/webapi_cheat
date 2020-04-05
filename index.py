@@ -40,6 +40,11 @@ def edit():
         data = pickle.load(datafile)
     return render_template('edit.html', filetext=data[0]["text"])
 
+# リダイレクト
+@app.route('/redirect')
+def redirect_jinja():
+    return redirect(url_for('jinja'))
+
 # テキスト登録
 @app.route('/regist', methods=['POST'])
 def regist():
@@ -50,6 +55,12 @@ def regist():
         pickle.dump(obj, datafile)
         datafile.close()
     return redirect(url_for('edit'))
+
+# フロント用サンプル
+@app.route('/html5')
+def html5():
+    return render_template('html5.html')
+
 
 
 if __name__ == '__main__':
