@@ -14,6 +14,26 @@ app = Flask(__name__)
 def index():
     return 'hello'
 
+# 401エラー
+@app.errorhandler(401)
+def unauthorized(error):
+    return render_template('401.html'), 401
+
+# 404エラー
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('404.html'), 404
+
+# 500エラー
+@app.errorhandler(500)
+def internal_server_error(error):
+    return render_template('500.html'), 500
+
+# 503エラー
+@app.errorhandler(503)
+def service_unavilable(error):
+    return render_template('503.html'), 503
+
 # CSSやJavaScriptの外部ファイルを読み込む
 @app.route('/extend')
 def extend():
@@ -24,7 +44,7 @@ def template():
     return render_template('index.html')
 
 # テンプレートに値を渡してはめ込んで表示する
-@app.route('/jinja')
+@app.route('/jinja2')
 def jinja():
     s = "title string"
     l = ["list 1", "list 2", "list 3"]
@@ -43,7 +63,7 @@ def edit():
 # リダイレクト
 @app.route('/redirect')
 def redirect_jinja():
-    return redirect(url_for('jinja'))
+    return redirect(url_for('jinja2'))
 
 # テキスト登録
 @app.route('/regist', methods=['POST'])
